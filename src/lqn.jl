@@ -22,20 +22,21 @@ mutable struct LQNData{T, I <: Integer}
 end
 
 function LQNData(T::Type, n::I; mem::I = 5, scaling::Bool = true) where {I <: Integer}
+  m = max(mem, I(1))
   LQNData{T, I}(
-    max(mem, 1),
+    m,
     scaling,
     convert(T, 1),
     convert(T, 1),
-    [zeros(T, n) for _ = 1:mem],
-    [zeros(T, n) for _ = 1:mem],
-    zeros(T, mem),
-    fill(:empty, mem),
-    [zeros(T, n) for _ = 1:mem],
-    [zeros(T, n) for _ = 1:mem],
-    zeros(T, mem),
-    zeros(T, mem),
-    zeros(T, mem),
+    [zeros(T, n) for _ = 1:m],
+    [zeros(T, n) for _ = 1:m],
+    zeros(T, m),
+    fill(:empty, m),
+    [zeros(T, n) for _ = 1:m],
+    [zeros(T, n) for _ = 1:m],
+    zeros(T, m),
+    zeros(T, m),
+    zeros(T, m),
     1,
     Vector{T}(undef, n),
     Vector{T}(undef, n),
